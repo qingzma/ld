@@ -7,10 +7,11 @@ FATAL: In-source build is not allowd.
 endif()
 
 project(Ld)
+add_subdirectory(leveldb)
 
-# include(FetchContent)
-# FetchContent_Declare(
-#     leveldb
-#     GIT_REPOSITORY https://github.com/qingzma/leveldb.git
-#     GIT_TAG aa5479b
-# )
+set(SOURCES src/ld.cpp)
+
+add_executable(ld ${SOURCES})
+
+target_link_libraries(ld PUBLIC leveldb)
+target_include_directories(ld PUBLIC leveldb/include)
